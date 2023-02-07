@@ -37,7 +37,7 @@ export default function Home() {
       setCount(resJson.count);
     } 
     fetchData();
-  },[options,filters]);
+  },[options,filters,searchText]);
 
   const handleSearch = () => {
     const search_parameters = Object.keys(Object.assign({}, ...users));
@@ -93,7 +93,7 @@ export default function Home() {
                   <div className={styles.sortDown} style={(options.col=='emp_id' &&  options.order==false ) ? {borderTop: "5px solid rgb(22, 152, 222)",pointerEvents:"none"} : {borderTop: "5px solid black"} } onClick={()=>{ setOptions({...options,order:false,col:"emp_id"})}}>  </div> 
                 </div>
                 <div className={styles.filters} id="filters">
-                  <FontAwesomeIcon icon={faFilter} style={{color: filters.find((obj)=>obj.col=='emp_id') ? 'rgb(22, 152, 222)':'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'emp_id',show:!filterDisplay.show})}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faFilter} style={{color: (!globalFilter && filters.find((obj)=>obj.col=='emp_id') ) ? 'rgb(22, 152, 222)':'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'emp_id',show:!filterDisplay.show})}></FontAwesomeIcon>
                   <NumericFilters filterDisplay={filterDisplay} col='emp_id' setfilterDisplay={setfilterDisplay} filters={filters} setFilters={setFilters} setmodalDisplay={setmodalDisplay} />
                 </div>
               </div>
@@ -106,7 +106,7 @@ export default function Home() {
                   <div className={styles.sortDown} style={(options.col=='name' &&  options.order==false ) ? {borderTop: "5px solid rgb(22, 152, 222)",pointerEvents:"none"} : {borderTop: "5px solid black"} } onClick={()=>{ setOptions({...options,order:false,col:"name"})}}>  </div> 
                 </div>
                 <div className={styles.filters} id="filters">
-                  <FontAwesomeIcon icon={faFilter} style={{color: filters.find((obj)=>obj.col=='name') ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'name',show:!filterDisplay.show})}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faFilter} style={{color: ( !globalFilter && filters.some((obj)=>obj.col=='name')) ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'name',show:!filterDisplay.show})}></FontAwesomeIcon>
                   <TextFilters filterDisplay={filterDisplay} col='name' filters={filters} setFilters={setFilters} setfilterDisplay={setfilterDisplay} setmodalDisplay={setmodalDisplay} />
                 </div>
               </div>
@@ -119,7 +119,7 @@ export default function Home() {
                 <div className={styles.sortDown} style={(options.col=='age' &&  options.order==false ) ? {borderTop: "5px solid rgb(22, 152, 222)",pointerEvents:"none"} : {borderTop: "5px solid black"} } onClick={()=>{ setOptions({...options,order:false,col:"age"})}}>  </div> 
               </div>
               <div className={styles.filters} id="filters">
-                  <FontAwesomeIcon icon={faFilter} style={{color: filters.find((obj)=>obj.col=='age') ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'age',show:!filterDisplay.show})}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faFilter} style={{color: ( !globalFilter && filters.find((obj)=>obj.col=='age')) ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'age',show:!filterDisplay.show})}></FontAwesomeIcon>
                   <NumericFilters filterDisplay={filterDisplay} col='age' setfilterDisplay={setfilterDisplay} filters={filters} setFilters={setFilters} setmodalDisplay={setmodalDisplay} />
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function Home() {
                 <div className={styles.sortDown} style={(options.col=='email' &&  options.order==false ) ? {borderTop: "5px solid rgb(22, 152, 222)",pointerEvents:"none"} : {borderTop: "5px solid black"} } onClick={()=>{ setOptions({...options,order:false,col:"email"})}}>  </div> 
               </div>
               <div className={styles.filters} id="filters">
-                  <FontAwesomeIcon icon={faFilter} style={{color: filters.find((obj)=>obj.col=='email') ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'email',show:!filterDisplay.show})}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faFilter} style={{color: ( !globalFilter && filters.find((obj)=>obj.col=='email')) ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'email',show:!filterDisplay.show})}></FontAwesomeIcon>
                   <TextFilters filterDisplay={filterDisplay} col='email' filters={filters} setFilters={setFilters} setfilterDisplay={setfilterDisplay} setmodalDisplay={setmodalDisplay} />
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default function Home() {
                 <div className={styles.sortDown} style={(options.col=='city' &&  options.order==false ) ? {borderTop: "5px solid rgb(22, 152, 222)",pointerEvents:"none"} : {borderTop: "5px solid black"} } onClick={()=>{ setOptions({...options,order:false,col:"city"})}}>  </div> 
               </div>
               <div className={styles.filters} id="filters">
-                  <FontAwesomeIcon icon={faFilter} style={{color: filters.find((obj)=>obj.col=='city') ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'city',show:!filterDisplay.show})}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faFilter} style={{color: (!globalFilter && filters.find((obj)=>obj.col=='city')) ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'city',show:!filterDisplay.show})}></FontAwesomeIcon>
                   <TextFilters filterDisplay={filterDisplay} col='city' filters={filters} setFilters={setFilters} setfilterDisplay={setfilterDisplay} setmodalDisplay={setmodalDisplay} />
                 </div>
               </div>
@@ -158,7 +158,7 @@ export default function Home() {
                 <div className={styles.sortDown} style={(options.col=='doj' &&  options.order==false ) ? {borderTop: "5px solid rgb(22, 152, 222)",pointerEvents:"none"} : {borderTop: "5px solid black"} } onClick={()=>{ setOptions({...options,order:false,col:"doj"})}}>  </div> 
               </div>
               <div className={styles.filters} id="filters">
-                  <FontAwesomeIcon icon={faFilter} style={{color: filters.find((obj)=>obj.col=='doj') ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'doj',show:!filterDisplay.show})}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={faFilter} style={{color: ( !globalFilter && filters.find((obj)=>obj.col=='doj')) ? 'rgb(22, 152, 222)' : 'rgb(132, 132, 132)'}} onClick={()=>setfilterDisplay({col:'doj',show:!filterDisplay.show})}></FontAwesomeIcon>
                   <NumericFilters filterDisplay={filterDisplay} col='doj' filters={filters} setFilters={setFilters} setfilterDisplay={setfilterDisplay} setmodalDisplay={setmodalDisplay} />
                 </div>
               </div>
