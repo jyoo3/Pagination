@@ -45,7 +45,7 @@ export default function Home() {
     setGlobalFilter(true);
     const f=[];
     search_parameters.map((col,i)=> f[i] = {col:col,type:'Contains',val:searchText})
-    setFilters([...filters,...f])
+    setFilters(f)
     }
     const Highlighted = ({text = '', highlight = ''}) => {
       if (!highlight.trim()) {
